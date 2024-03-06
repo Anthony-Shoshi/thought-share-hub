@@ -16,6 +16,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
                 <th scope="col">Short Description</th>
+                <th scope="col">Featured</th>
                 <th scope="col">Total Like</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -27,6 +28,14 @@
                     <td><?= $post->title ?></td>
                     <td><?= $post->author ?></td>
                     <td><?= $post->short_description ?></td>
+                    <td>
+                        <?php if ($post->is_featured) : ?>
+                            <span class="badge bg-success">Featured</span>
+                        <?php else : ?>
+                            <span class="badge bg-danger">Not Featured</span>
+                        <?php endif; ?>
+                    </td>
+
                     <td><?= $post->total_like ?></td>
                     <td>
                         <a href="/comment/index?id=<?= $post->post_id ?>" class="btn btn-info">View Comments</a>

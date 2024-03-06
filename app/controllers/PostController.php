@@ -57,7 +57,7 @@ class PostController
 
     public function getAllPostsByCategoryId()
     {
-        $id = $_GET['catid'];
+        $id = $_GET['catid'];        
         $posts = $this->postService->getAllPostsByCategoryId($id);
         header('Content-Type: application/json');
         echo json_encode($posts);

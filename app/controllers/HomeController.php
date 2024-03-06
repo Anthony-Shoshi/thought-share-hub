@@ -24,7 +24,7 @@ class HomeController
 
     public function index()
     {
-        include "../views/home/index.php";
+        include "../views/frontend/home/index.php";
         exit;
     }
 
@@ -38,7 +38,7 @@ class HomeController
 
     public function blogs()
     {
-        include "../views/blogs.php";
+        include "../views/frontend/blogs.php";
         exit;
     }
 
@@ -49,14 +49,15 @@ class HomeController
         $relatedPosts = $this->postService->getRelatedPosts($details->category_id, $details->post_id);
         $comments = $this->commentsService->getCommentsByPostId($details->post_id);
         $currentUrl = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        include "../views/post-details.php";
+        include "../views/frontend/post-details.php";
         exit;
     }
 
     function category(): void
     {
         $id = $_GET['catid'];
-        include "../views/category-blogs.php";
+        $categoryName = $this->categoryService->getCategoryById($id)->category_name;
+        include "../views/frontend/category-blogs.php";
         exit;
     }
 }
