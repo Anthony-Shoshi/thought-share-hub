@@ -1,0 +1,53 @@
+body {
+    padding-top: 60px;
+    /* Adjust the top padding according to your navbar height */
+    margin: 0;
+}
+
+.admin-panel {
+    display: flex;
+    height: 100vh;
+}
+
+.bg-sidebar {
+    background-color: #343a40;
+    /* Nice background color */
+    color: #fff;
+    /* Text color */
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 230px;
+    min-height: 100%;
+}
+
+.sidebar-sticky {
+    flex: 0 0 230px;
+    /* Fixed width for sidebar */
+}
+
+.nav-link {
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    background-color: #495057;
+}
+
+.nav-item {
+    margin-bottom: 10px;
+}
+
+.nav-link.active {
+    background-color: #495057;
+}
+
+.card {
+    background-color: #495057;
+    color: #fff;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}

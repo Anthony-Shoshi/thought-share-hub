@@ -1,0 +1,22 @@
+{
+    "name": "thought-share-hub/anthony-shoshi-gomes",
+    "description": "Online blog system to share knowledge.",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": ".",
+            "App\\Helpers\\": "./helpers/",
+            "App\\Controllers\\": "./controllers",
+            "App\\Models\\": "./models",
+            "App\\Services\\": "./services",
+            "App\\Repositories\\": "./repositories",
+            "App\\Views\\": "./views"
+        }
+    },
+    "authors": [
+        {
+            "name": "Anthony Shoshi Gomes"
+        }
+    ],
+    "require": {}
+}
