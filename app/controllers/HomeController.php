@@ -47,7 +47,7 @@ class HomeController
         $id = $_GET['id'];
         $details = $this->postService->getPostById($id);
         $relatedPosts = $this->postService->getRelatedPosts($details->category_id, $details->post_id);
-        $comments = $this->commentsService->getCommentsByPostId($details->post_id);
+        // $comments = $this->commentsService->getCommentsByPostId($details->post_id);
         $currentUrl = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         include "../views/frontend/post-details.php";
         exit;

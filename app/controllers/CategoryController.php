@@ -115,11 +115,4 @@ class CategoryController
         $categories = $this->categoryService->getAllCategories();
         header('location: /category/index');
     }
-
-    public function getAllCategoryApi(): void
-    {
-        $categories = $this->categoryService->getAllCategories();
-        header('Content-Type: application/json');
-        echo json_encode($categories);
-    }
 }

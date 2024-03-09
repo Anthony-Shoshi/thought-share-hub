@@ -7,6 +7,7 @@
             "App\\": ".",
             "App\\Helpers\\": "./helpers/",
             "App\\Controllers\\": "./controllers",
+            "App\\Controllers\\Api": "./controllers/api",
             "App\\Models\\": "./models",
             "App\\Services\\": "./services",
             "App\\Repositories\\": "./repositories",

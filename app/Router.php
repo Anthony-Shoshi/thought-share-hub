@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Error;
@@ -23,9 +24,14 @@ class Router
             $explodedUri[2] = 'index';
         }
 
-        $controllerName = "App\\Controllers\\" . ucwords($explodedUri[1]) . "Controller";
-        $methodName = isset($explodedUri[2]) ? $explodedUri[2] : 'index';
-        
+        if ($explodedUri[1] == 'api') {
+            $controllerName = "App\\Controllers\\Api\\" . ucwords($explodedUri[2]) . "Controller";
+            $methodName = isset($explodedUri[3]) ? $explodedUri[3] : 'index';
+        } else {
+            $controllerName = "App\\Controllers\\" . ucwords($explodedUri[1]) . "Controller";
+            $methodName = isset($explodedUri[2]) ? $explodedUri[2] : 'index';
+        }
+
         if (!class_exists($controllerName) || !method_exists($controllerName, $methodName)) {
             $this->showNotFoundPage();
             exit;
@@ -41,7 +47,7 @@ class Router
     }
 
     private function showNotFoundPage()
-    {        
+    {
         http_response_code(404);
         include __DIR__ . '/views/error/not_found.php';
         exit;

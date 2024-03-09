@@ -5,31 +5,17 @@
         <!-- Menu Items -->
         <div class="mx-auto">
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Categories
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Category 1</a>
-                            <a class="dropdown-item" href="#">Category 2</a>
-                            <a class="dropdown-item" href="#">Category 3</a>
-                        </div>
-                    </li> -->
+                <ul class="navbar-nav">                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Categories
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdownMenu">
-                            <!-- Dropdown items will be dynamically added here -->
                         </div>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/home/blogs">Blog</a>
+                        <a class="nav-link" href="/home/blogs">All Blogs</a>
                     </li>
                 </ul>
             </div>
@@ -56,7 +42,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        fetch('/category/getAllCategoryApi')
+        fetch('/api/category/getAllCategoryApi')
             .then(response => response.json())
             .then(categories => {
                 const dropdownMenu = document.getElementById('navbarDropdownMenu');

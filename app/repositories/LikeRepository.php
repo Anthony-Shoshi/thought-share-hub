@@ -45,4 +45,17 @@ class LikeRepository {
         ]);
     }
 
+    public function isDuplicate(Like $like): bool {
+        $stmt = $this->db->prepare("SELECT COUNT(*) FROM likes WHERE post_id = :post_id AND user_ip = :user_ip");
+        $stmt->execute([
+            ':post_id' => $like->post_id,
+            ':user_ip' => $like->user_ip,
+        ]);
+    
+        $count = $stmt->fetchColumn();
+    
+        return $count > 0;
+    }
+    
+
 }

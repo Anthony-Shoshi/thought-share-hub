@@ -34,42 +34,12 @@ class PostController
         return $this->postService->createPost($post);
     }
 
-    public function getAllPostsApi(): void
-    {
-        $posts = $this->postService->getAllPosts("is_featured = 1");
-        header('Content-Type: application/json');
-        echo json_encode($posts);
-    }
-
-    public function getAllPostsLimitApi(): void
-    {
-        $posts = $this->postService->getAllPostsLimitApi();
-        header('Content-Type: application/json');
-        echo json_encode($posts);
-    }
-
-    public function getAllFeaturedPostsApi(): void
-    {
-        $posts = $this->postService->getAllFeaturedPosts();
-        header('Content-Type: application/json');
-        echo json_encode($posts);
-    }
-
-    public function getAllPostsByCategoryId()
-    {
-        $id = $_GET['catid'];        
-        $posts = $this->postService->getAllPostsByCategoryId($id);
-        header('Content-Type: application/json');
-        echo json_encode($posts);
-    }
-
     function index(): void
     {
         $posts = $this->postService->getAllPosts();
         include '../views/backend/posts/index.php';
         exit;
     }
-
 
     public function create(?string $message = ''): void
     {

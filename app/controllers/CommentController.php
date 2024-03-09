@@ -37,28 +37,6 @@ class CommentController
         return $this->commentService->getCommentsByPostId($postId);
     }
 
-    public function store(): void
-    {
-        $comment = new Comment();
-
-        $comment->post_id = isset($_POST['post_id']) ? (int)$_POST['post_id'] : 0;
-        $comment->name = $_POST['name'] ?? '';
-        $comment->email = $_POST['email'] ?? '';
-        $comment->comment_text = $_POST['comment_text'] ?? '';
-
-        $result = $this->commentService->createComment($comment);
-
-        header('Content-Type: application/json');
-
-        if ($result['success']) {
-            echo json_encode(['success' => true, 'message' => 'Comment stored successfully']);
-        } else {
-            echo json_encode(['success' => false, 'errors' => $result['errors']]);
-        }
-
-        exit;
-    }
-
     public function delete(): void
     {
         $commentId = isset($_GET['id']) ? (int)$_GET['id'] : 0;

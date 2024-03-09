@@ -10,7 +10,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        fetch('/category/getAllCategoryApi')
+        fetch('/api/category/getAllCategoryApi')
             .then(response => response.json())
             .then(categories => {
                 const categoryList = document.getElementById('categoryList');

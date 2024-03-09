@@ -82,7 +82,6 @@ class PostRepository
             FROM posts
             JOIN users ON posts.user_id = users.user_id
             WHERE is_featured = 0
-            LIMIT 4
         ');
 
         $results = $stmt->fetchAll(PDO::FETCH_CLASS, Post::class);
@@ -95,6 +94,7 @@ class PostRepository
         SELECT posts.*, users.username AS author
         FROM posts
         JOIN users ON posts.user_id = users.user_id
+        WHERE is_featured = 1
         ORDER BY RAND()
         LIMIT 2
     ');

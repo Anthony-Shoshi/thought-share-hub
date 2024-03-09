@@ -7,10 +7,7 @@
         <div class="col-lg-8 col-md-8">
             <h2>Featured Blog</h2>
             <hr>
-
-            <!-- Featured Posts Container -->
             <div id="featuredPostsContainer" class="row"></div>
-
         </div>
 
         <?php include __DIR__ . '/../inc/sidebar.php'; ?>
@@ -22,16 +19,16 @@
             <h2>More Blog</h2>
             <hr>
             <div id="moreBlogContainer" class="row"></div>
-
         </div>
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        fetchAndRenderPosts('/post/getAllFeaturedPostsApi', 'featuredPostsContainer');
-        fetchAndRenderPosts('/post/getAllPostsLimitApi', 'moreBlogContainer');
-    });
-</script>
 
 <?php include __DIR__ . '/../inc/footer.php'; ?>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchAndRenderPosts('/api/post/getAllFeaturedPostsApi', 'featuredPostsContainer');
+        fetchAndRenderPosts('/api/post/getAllPostsLimitApi', 'moreBlogContainer');
+    });
+</script>

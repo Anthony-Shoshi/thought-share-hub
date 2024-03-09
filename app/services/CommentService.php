@@ -22,7 +22,6 @@ class CommentService {
 
         if (empty($validationErrors)) {
             $isStored = $this->commentRepository->create($comment);
-
             if ($isStored) {
                 return ['success' => true, 'message' => 'Comment stored successfully'];
             } else {
