@@ -19,7 +19,7 @@
 
                     <p>
                         <i class="bi bi-hand-thumbs-up" role="button" data-post-id="<?= $details->post_id ?>" data-ip="<?= $_SERVER['REMOTE_ADDR'] ?>" onclick="toggleLike(this)"></i>
-                        <span id="likesCount"><?= $details->total_likes ?></span> Claps
+                        <span id="likesCount"><?= $details->total_likes ?></span> Likes
                         <br>
                         <span class="d-none text-danger already-liked-message">You have already liked!</span>
                     </p>
@@ -46,9 +46,7 @@
                 <div class="comments-section">
                     <h3>Latest Comments</h3>
 
-                    <div id="commentsContainer">
-                        <!-- Comments will be rendered here -->
-                    </div>
+                    <div id="commentsContainer"></div>
 
                     <br>
 
@@ -116,7 +114,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const urlParams = new URLSearchParams(window.location.search);
-        const postId = urlParams.get('id');
-        fetchComments(postId);
+        const slug = urlParams.get('slug');
+        fetchComments(slug);
     });
 </script>

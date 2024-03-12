@@ -5,7 +5,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-lg-8 col-md-8">
-            <h2>Featured Blog</h2>
+            <h2>Featured Blogs</h2>
             <hr>
             <div id="featuredPostsContainer" class="row"></div>
         </div>
@@ -16,7 +16,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <h2>More Blog</h2>
+            <h2>More Blogs</h2>
             <hr>
             <div id="moreBlogContainer" class="row"></div>
         </div>

@@ -8,7 +8,11 @@ function fetchAndRenderPosts(apiUrl, containerId, keyword = '') {
             if (posts.length === 0) {
                 const noPostMessage = document.createElement('div');
                 noPostMessage.className = 'alert alert-warning';
-                noPostMessage.textContent = 'There are no posts with ' + keyword + '!';
+                if (keyword != '') {                    
+                    noPostMessage.textContent = 'There are no posts with ' + keyword + '!';
+                } else {
+                    noPostMessage.textContent = 'There are no posts!';
+                }
                 container.appendChild(noPostMessage);
             } else {
                 posts.forEach(post => {
@@ -87,46 +91,48 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
     const commentForm = document.querySelector(".comment-form");
-    commentForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        const formData = new FormData(commentForm);
-        fetch(commentForm.getAttribute("action"), {
-            method: "POST",
-            body: formData,
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
+    if (commentForm) {
+        commentForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(commentForm);
+            fetch(commentForm.getAttribute("action"), {
+                method: "POST",
+                body: formData,
             })
-            .then(data => {
-                if (data.success) {
-                    commentForm.reset();
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        commentForm.reset();
 
-                    const successMessage = document.querySelector('.success-message');
-                    successMessage.classList.remove('d-none');
-                    successMessage.classList.add('d-block');
+                        const successMessage = document.querySelector('.success-message');
+                        successMessage.classList.remove('d-none');
+                        successMessage.classList.add('d-block');
 
-                    const errorMessages = commentForm.querySelectorAll(".error-message");
-                    errorMessages.forEach(message => message.remove());
+                        const errorMessages = commentForm.querySelectorAll(".error-message");
+                        errorMessages.forEach(message => message.remove());
 
-                    fetchComments(postId);
-                } else {
-                    Object.keys(data.errors).forEach(fieldName => {
-                        const field = document.querySelector(`#${fieldName}`);
-                        const errorMessage = document.createElement("p");
-                        errorMessage.className = "error-message";
-                        errorMessage.textContent = data.errors[fieldName];
-                        errorMessage.style.color = "red";
-                        field.parentNode.insertBefore(errorMessage, field.nextSibling);
-                    });
-                }
-            })
-            .catch(error => {
-                console.error("Error during comment submission", error);
-            });
-    });
+                        fetchComments(postId);
+                    } else {
+                        Object.keys(data.errors).forEach(fieldName => {
+                            const field = document.querySelector(`#${fieldName}`);
+                            const errorMessage = document.createElement("p");
+                            errorMessage.className = "error-message";
+                            errorMessage.textContent = data.errors[fieldName];
+                            errorMessage.style.color = "red";
+                            field.parentNode.insertBefore(errorMessage, field.nextSibling);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error during comment submission", error);
+                });
+        });
+    }
 });
 
 let hasLiked = false;
@@ -169,8 +175,8 @@ function toggleLike(icon) {
     }
 }
 
-function fetchComments(postId) {
-    fetch(`/api/comment/getAllCommentsByPostId?id=${postId}`)
+function fetchComments(slug) {
+    fetch(`/api/comment/getAllCommentsByPostId?slug=${slug}`)
         .then(response => response.json())
         .then(comments => {
             renderComments(comments);

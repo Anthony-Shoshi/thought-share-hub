@@ -1,6 +1,6 @@
 # Blogging Platform
 
-This is a simple blogging platform with both backend and frontend components. Users can log in as an admin to manage categories and posts from the backend, while regular users can read blog posts from the frontend.
+This is a simple blogging platform with both backend and frontend components. Users can log in as an admin to manage categories and posts from the backend, while regular users can search, read, like, comment and share blog posts from the frontend.
 
 ## Admin Login
 
@@ -28,7 +28,7 @@ To log in as an admin and access the backend, use the following credentials:
 
 1. Log in as an admin using the provided credentials.
 2. Navigate to the backend to manage categories and posts.
-3. Regular users can access the frontend to read blog posts.
+3. Regular users can access the frontend to search, read, like, comment and share blog posts.
 
 ## Technologies Used
 

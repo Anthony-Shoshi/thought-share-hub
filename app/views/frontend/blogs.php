@@ -5,7 +5,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-lg-8 col-md-8">
-            <h2>All Blog</h2>
+            <h2>All Blogs</h2>
             <hr>
 
             <div id="allPostsContainer" class="row"></div>

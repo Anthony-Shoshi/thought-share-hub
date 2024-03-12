@@ -4,13 +4,16 @@ namespace App\Controllers\Api;
 
 use App\Models\Comment;
 use App\Services\CommentService;
+use App\Services\PostService;
 
 class CommentController extends ApiBaseController
 {
     private $commentService;
+    private $postService;
 
     public function __construct() {
         $this->commentService = new CommentService();
+        $this->postService = new PostService();
     }
 
     public function store(): void
@@ -33,7 +36,9 @@ class CommentController extends ApiBaseController
     
     public function getAllCommentsByPostId(): void
     {
-        $postId = $_GET['id'];
+        $slug = $_GET['slug'];
+        $postId = $this->postService->getPostBySlug($slug)->post_id;
+        // $postId = $_GET['id'];
         $comments = $this->commentService->getCommentsByPostId($postId);
         $this->respondSuccess($comments);
     }
