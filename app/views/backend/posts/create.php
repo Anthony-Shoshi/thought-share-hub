@@ -31,11 +31,13 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="short_description" class="form-label">Short Description</label>
                 <textarea class="form-control" id="short_description" name="short_description" rows="5" required></textarea>
             </div>
-            <div class="col-md-6">
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
                 <label for="content" class="form-label">Content</label>
                 <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
             </div>

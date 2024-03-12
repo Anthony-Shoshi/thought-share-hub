@@ -19,7 +19,7 @@
                     listItem.className = 'sidebar-list-item';
                     
                     const categoryLink = document.createElement('a');
-                    categoryLink.href = '/home/category?catid=' + category.category_id;
+                    categoryLink.href = '/home/category?cat=' + category.slug;
                     categoryLink.className = 'category-link text-decoration-none';
                     categoryLink.textContent = category.category_name;
 

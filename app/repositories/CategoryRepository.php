@@ -37,6 +37,13 @@ class CategoryRepository {
         );
     }
 
+    public function getBySlug(string $slug): ?Category {
+        $stmt = $this->db->prepare('SELECT * FROM categories WHERE slug = :slug');
+        $stmt->execute([':slug' => $slug]);
+        $result = $stmt->fetchObject(Category::class);
+        return $result ?: null;
+    }
+    
     public function getById(int $categoryId): ?Category {
         $stmt = $this->db->prepare('SELECT * FROM categories WHERE category_id = :category_id');
         $stmt->execute([':category_id' => $categoryId]);

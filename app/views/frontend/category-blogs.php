@@ -21,6 +21,6 @@
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const categoryId = urlParams.get('catid');
-    fetchAndRenderCategoryPosts('/api/post/getAllPostsByCategoryId?catid=' + categoryId, 'categoryPostsContainer');
+    const slug = urlParams.get('cat');
+    fetchAndRenderCategoryPosts('/api/post/getAllPostsByCategory?cat=' + slug, 'categoryPostsContainer');
 </script>

@@ -2,10 +2,9 @@
     <div class="container">
         <a class="navbar-brand" href="/">Thought Share Hub</a>
 
-        <!-- Menu Items -->
         <div class="mx-auto">
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">                    
+                <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Categories
@@ -24,11 +23,11 @@
         <div>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <form class="form-inline">
+                    <form id="searchForm" class="form-inline" autocomplete="off">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control" id="searchKeyword" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="input-group-text" id="basic-addon2">
+                                <button type="submit" class="input-group-text" id="basic-addon2">
                                     <i class="bi bi-search"></i>
                                 </button>
                             </div>
@@ -50,7 +49,7 @@
                 categories.forEach(category => {
                     const dropdownItem = document.createElement('a');
                     dropdownItem.className = 'dropdown-item';
-                    dropdownItem.href = '/home/category?catid=' + category.category_id;
+                    dropdownItem.href = '/home/category?cat=' + category.slug;
                     dropdownItem.textContent = category.category_name;
                     dropdownMenu.appendChild(dropdownItem);
                 });
@@ -58,5 +57,12 @@
             .catch(error => {
                 console.error('Error fetching categories:', error);
             });
+
+        const searchForm = document.getElementById('searchForm');
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const searchKeyword = document.getElementById('searchKeyword').value;
+            window.location.href = `/home/blogs?keyword=${encodeURIComponent(searchKeyword)}`;
+        });
     });
 </script>

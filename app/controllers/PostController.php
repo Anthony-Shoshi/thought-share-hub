@@ -51,14 +51,32 @@ class PostController
     public function store(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             $post = new Post();
-            $post->title = $_POST['title'];
-            $post->user_id = $_SESSION['user']['id'];
-            $post->category_id = $_POST['category_id'];
-            $post->short_description = $_POST['short_description'];
-            $post->content = $_POST['content'];
+
+            $fields = [
+                'title' => $_POST['title'],
+                'category_id' => $_POST['category_id'],
+                'short_description' => $_POST['short_description'],
+                'content' => $_POST['content'],
+            ];
+
+            $validatedFields = Helper::validateAndSanitizeFields($fields);
+
+            if ($validatedFields === false) {
+                header("Location: /post/create");
+                exit;
+            }
+
+            $post->title = $validatedFields['title'];
+            $post->category_id = (int)$validatedFields['category_id'];
+            $post->short_description = $validatedFields['short_description'];
+            $post->content = $validatedFields['content'];
+
             $isFeatured = isset($_POST['is_featured']) ? $_POST['is_featured'] : 0;
             $post->is_featured = $isFeatured;
+
+            $post->user_id = $_SESSION['user']['id'];
             $post->slug = Helper::slug($post->title);
 
             $uploadDirectory = 'public/images';
@@ -109,15 +127,35 @@ class PostController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $post = new Post();
+
             $post->post_id = $_POST['post_id'];
-            $post->title = $_POST['title'];
-            $post->user_id = $_SESSION['user']['id'];
-            $post->category_id = $_POST['category_id'];
-            $post->short_description = $_POST['short_description'];
-            $post->content = $_POST['content'];
+
+            $fields = [
+                'title' => $_POST['title'],
+                'category_id' => $_POST['category_id'],
+                'short_description' => $_POST['short_description'],
+                'content' => $_POST['content'],
+            ];
+
+            
+            $validatedFields = Helper::validateAndSanitizeFields($fields);
+            
+            if ($validatedFields === false) {
+                header("Location: /post/edit?id=" . $_POST['post_id']);
+                exit;
+            }
+
+            $post->title = $validatedFields['title'];
+            $post->category_id = (int)$validatedFields['category_id'];
+            $post->short_description = $validatedFields['short_description'];
+            $post->content = $validatedFields['content'];
+
             $isFeatured = isset($_POST['is_featured']) ? $_POST['is_featured'] : 0;
             $post->is_featured = $isFeatured;
+
+            $post->user_id = $_SESSION['user']['id'];
             $post->slug = Helper::slug($post->title);
+            
             $post->updated_at = date('Y-m-d H:i:s');
 
             if (isset($_FILES['image_url']) && $_FILES['image_url']['error'] === UPLOAD_ERR_OK) {
@@ -163,11 +201,11 @@ class PostController
     {
         $success = 0;
         $postId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        
-        if ($postId != 0) {            
+
+        if ($postId != 0) {
             $post = $this->postService->getPostById($postId);
             if ($post->image_url != "") {
-                $imageUrl = ltrim($post->image_url, '/');                
+                $imageUrl = ltrim($post->image_url, '/');
                 unlink($imageUrl);
             }
             $success = $this->postService->deletePost($postId);

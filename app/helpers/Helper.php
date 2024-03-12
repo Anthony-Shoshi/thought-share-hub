@@ -20,10 +20,34 @@ class Helper
         return $text;
     }
 
-    public static function debug($data) {
+    public static function debug($data)
+    {
         echo "<pre>";
         var_dump($data);
         echo "</pre>";
         exit;
+    }
+
+    public static function validateAndSanitizeFields($fields)
+    {
+        $errors = [];
+
+        foreach ($fields as $fieldName => $value) {
+            $fieldName = str_replace('_', ' ', $fieldName);
+            $fieldName = ucwords($fieldName);
+
+            if (isset($value) && !empty($value)) {
+                $fields[$fieldName] = htmlspecialchars(trim($value), ENT_QUOTES, 'UTF-8');
+            } else {
+                $errors[$fieldName] = "$fieldName is required.";
+            }
+        }
+
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            return false;
+        }
+
+        return $fields;
     }
 }

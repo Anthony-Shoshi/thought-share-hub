@@ -13,6 +13,10 @@ class CategoryService {
         $this->categoryRepository = new CategoryRepository();
     }
 
+    public function getCategoryBySlug(string $slug): ?Category {
+        return $this->categoryRepository->getBySlug($slug);
+    }
+    
     public function getCategoryById(int $categoryId): ?Category {
         return $this->categoryRepository->getById($categoryId);
     }

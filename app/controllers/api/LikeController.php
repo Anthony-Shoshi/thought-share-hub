@@ -33,6 +33,8 @@ class LikeController extends ApiBaseController
                     $success = $this->likeService->createLike($like);
 
                     $this->respondSuccess(['success' => $success]);
+                } else {
+                    $this->respondError('Invalid request body');
                 }
             }
         }

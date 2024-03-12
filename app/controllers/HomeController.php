@@ -37,17 +37,16 @@ class HomeController
     }
 
     public function blogs()
-    {
+    {        
         include "../views/frontend/blogs.php";
         exit;
     }
 
     public function blog()
     {
-        $id = $_GET['id'];
-        $details = $this->postService->getPostById($id);
+        $slug = $_GET['slug'];
+        $details = $this->postService->getPostBySlug($slug);
         $relatedPosts = $this->postService->getRelatedPosts($details->category_id, $details->post_id);
-        // $comments = $this->commentsService->getCommentsByPostId($details->post_id);
         $currentUrl = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         include "../views/frontend/post-details.php";
         exit;
@@ -55,8 +54,8 @@ class HomeController
 
     function category(): void
     {
-        $id = $_GET['catid'];
-        $categoryName = $this->categoryService->getCategoryById($id)->category_name;
+        $slug = $_GET['cat'];
+        $categoryName = $this->categoryService->getCategoryBySlug($slug)->category_name;
         include "../views/frontend/category-blogs.php";
         exit;
     }

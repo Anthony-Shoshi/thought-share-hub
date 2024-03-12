@@ -38,13 +38,13 @@ class UserController
             header("Location: /home/backend");
             exit;
         }
-        
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            include $baseDir . 'views/auth/login.php';
+            include $baseDir . 'views/frontend/auth/login.php';
             exit;
         } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+            $username = htmlspecialchars(trim(filter_input(INPUT_POST, 'username', FILTER_DEFAULT, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_ENCODE_HIGH)), ENT_QUOTES, 'UTF-8');
+            $password = htmlspecialchars(trim(filter_input(INPUT_POST, 'password', FILTER_DEFAULT, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_ENCODE_HIGH)), ENT_QUOTES, 'UTF-8');
 
             $user = $this->userService->validateLogin($username, $password);
 
@@ -60,7 +60,7 @@ class UserController
                     'type' => 'danger',
                     'message' => 'Invalid username or password.',
                 ];
-                include $baseDir . 'views/auth/login.php';
+                include $baseDir . 'views/frontend/auth/login.php';
                 exit;
             }
         } else {

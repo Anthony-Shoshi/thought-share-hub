@@ -8,12 +8,22 @@ use App\Services\PostService;
 class PostController extends ApiBaseController
 {
     private $postService;
+    private $categoryService;
 
     public function __construct()
     {
         $this->postService = new PostService();
+        $this->categoryService = new CategoryService();
     }
 
+    public function getSearchPostsApi(): void
+    {
+        $keyword = $_GET['keyword'];
+        $whereClause = "title LIKE '%$keyword%' OR content LIKE '%$keyword%' OR short_description LIKE '%$keyword%'";
+        $posts = $this->postService->getAllPosts($whereClause);
+        $this->respondSuccess($posts);
+    }
+    
     public function getAllPostsApi(): void
     {
         $posts = $this->postService->getAllPosts();
@@ -32,9 +42,10 @@ class PostController extends ApiBaseController
         $this->respondSuccess($posts);
     }
 
-    public function getAllPostsByCategoryId()
+    public function getAllPostsByCategory()
     {
-        $id = $_GET['catid'];
+        $slug = $_GET['cat'];
+        $id = $this->categoryService->getCategoryBySlug($slug)->category_id;
         $posts = $this->postService->getAllPostsByCategoryId($id);
         $this->respondSuccess($posts);
     }

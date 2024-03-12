@@ -1,17 +1,23 @@
-function fetchAndRenderPosts(apiUrl, containerId) {
+function fetchAndRenderPosts(apiUrl, containerId, keyword = '') {
     fetch(apiUrl)
         .then(response => response.json())
         .then(posts => {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
 
-            posts.forEach(post => {
-                const postElement = document.createElement('div');
-                postElement.className = containerId === 'moreBlogContainer' ? 'col-lg-4' : 'col-lg-6';
-                postElement.innerHTML = `
+            if (posts.length === 0) {
+                const noPostMessage = document.createElement('div');
+                noPostMessage.className = 'alert alert-warning';
+                noPostMessage.textContent = 'There are no posts with ' + keyword + '!';
+                container.appendChild(noPostMessage);
+            } else {
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = containerId === 'moreBlogContainer' ? 'col-lg-4' : 'col-lg-6';
+                    postElement.innerHTML = `
                                         <!-- Featured Post -->
                                         <div class="post-preview">
-                                            <a href="/home/blog?id=${post.post_id}" class="text-decoration-none">
+                                            <a href="/home/blog?slug=${post.slug}" class="text-decoration-none">
                                                 <!-- Add a class to the image for styling -->
                                                 <img src="${post.image_url}" alt="Post Image" class="img-fluid rounded fixed-size-image">
                                                 <h2 class="post-title">${truncateString(post.title, 40)}</h2>
@@ -25,8 +31,9 @@ function fetchAndRenderPosts(apiUrl, containerId) {
                                         </div>
                                     `;
 
-                container.appendChild(postElement);
-            });
+                    container.appendChild(postElement);
+                });
+            }
         })
         .catch(error => console.error('Error fetching posts:', error));
 }
@@ -49,7 +56,7 @@ function fetchAndRenderCategoryPosts(apiUrl, containerId) {
                     postElement.className = 'col-lg-6';
                     postElement.innerHTML = `<!-- Featured Post -->
                                                 <div class="post-preview">
-                                                    <a href="/home/blog?id=${post.post_id}" class="text-decoration-none">
+                                                    <a href="/home/blog?slug=${post.slug}" class="text-decoration-none">
                                                         <img src="${post.image_url}" alt="Post Image" class="img-fluid rounded">
                                                         <h2 class="post-title">${post.title}</h2>
                                                         <p class="post-subtitle">${post.short_description}</p>
@@ -76,7 +83,6 @@ function truncateString(str, maxLength) {
     }
 }
 
-//Post Details 
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');

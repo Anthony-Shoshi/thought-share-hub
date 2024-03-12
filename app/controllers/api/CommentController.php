@@ -18,9 +18,9 @@ class CommentController extends ApiBaseController
         $comment = new Comment();
 
         $comment->post_id = isset($_POST['post_id']) ? (int)$_POST['post_id'] : 0;
-        $comment->name = $_POST['name'] ?? '';
-        $comment->email = $_POST['email'] ?? '';
-        $comment->comment_text = $_POST['comment_text'] ?? '';
+        $comment->name = isset($_POST['name']) ? htmlspecialchars(trim($_POST['name']), ENT_QUOTES, 'UTF-8') : '';
+        $comment->email = isset($_POST['email']) ? htmlspecialchars(trim($_POST['email']), ENT_QUOTES, 'UTF-8') : '';
+        $comment->comment_text = isset($_POST['comment_text']) ? htmlspecialchars(trim($_POST['comment_text']), ENT_QUOTES, 'UTF-8') : '';    
 
         $result = $this->commentService->createComment($comment);
 

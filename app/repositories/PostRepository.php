@@ -29,6 +29,31 @@ class PostRepository
         );
     }
 
+    public function getBySlug(string $slug): ?Post
+    {
+        $stmt = $this->db->prepare('
+        SELECT 
+            p.*, 
+            u.username AS author,
+            COUNT(l.like_id) AS total_likes
+        FROM 
+            posts p
+        JOIN 
+            users u ON p.user_id = u.user_id
+        LEFT JOIN 
+            likes l ON p.post_id = l.post_id
+        WHERE 
+            p.slug = :slug
+        GROUP BY 
+            p.post_id
+    ');
+
+        $stmt->execute([':slug' => $slug]);
+        $result = $stmt->fetchObject(Post::class);
+
+        return $result ?: null;
+    }
+    
     public function getById(int $postId): ?Post
     {
         $stmt = $this->db->prepare('

@@ -42,8 +42,20 @@ class CategoryController
     public function store(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
             $category = new Category();
-            $category->category_name = $_POST['category_name'];
+
+            $fields = [
+                'category_name' => $_POST['category_name']
+            ];
+
+            $validatedFields = Helper::validateAndSanitizeFields($fields);
+
+            if ($validatedFields === false) {
+                header("Location: /category/create");
+                exit;
+            }
+
             $category->slug = Helper::slug($_POST['category_name']);
 
             $success = $this->categoryService->createCategory($category);
@@ -79,9 +91,21 @@ class CategoryController
     public function update(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             $category = new Category();
+
+            $fields = [
+                'category_name' => $_POST['category_name']
+            ];
+
+            $validatedFields = Helper::validateAndSanitizeFields($fields);
+
+            if ($validatedFields === false) {
+                header('location: /category/edit?id=' . $_POST['category_id']);
+                exit;
+            }
+
             $category->category_id = $_POST['category_id'];
-            $category->category_name = $_POST['category_name'];
             $category->slug = Helper::slug($_POST['category_name']);
 
             $success = $this->categoryService->updateCategory($category);

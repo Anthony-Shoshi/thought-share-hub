@@ -15,6 +15,11 @@ class PostService
         $this->postRepository = new PostRepository();
     }
 
+    public function getPostBySlug(string $slug): ?Post
+    {
+        return $this->postRepository->getBySlug($slug);
+    }
+    
     public function getPostById(int $postId): ?Post
     {
         return $this->postRepository->getById($postId);
