@@ -38,7 +38,6 @@ class CommentController extends ApiBaseController
     {
         $slug = $_GET['slug'];
         $postId = $this->postService->getPostBySlug($slug)->post_id;
-        // $postId = $_GET['id'];
         $comments = $this->commentService->getCommentsByPostId($postId);
         $this->respondSuccess($comments);
     }

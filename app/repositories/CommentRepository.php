@@ -28,7 +28,7 @@ class CommentRepository {
     }
 
     public function getByPostId(int $postId): array {
-        $stmt = $this->db->prepare('SELECT * FROM comments WHERE post_id = :post_id LIMIT 3');
+        $stmt = $this->db->prepare('SELECT * FROM comments WHERE post_id = :post_id LIMIT 5');
         $stmt->execute([':post_id' => $postId]);
         $results = $stmt->fetchAll(PDO::FETCH_CLASS, Comment::class);
         return $results;

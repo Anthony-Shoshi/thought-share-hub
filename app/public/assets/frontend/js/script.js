@@ -8,7 +8,7 @@ function fetchAndRenderPosts(apiUrl, containerId, keyword = '') {
             if (posts.length === 0) {
                 const noPostMessage = document.createElement('div');
                 noPostMessage.className = 'alert alert-warning';
-                if (keyword != '') {                    
+                if (keyword != '') {
                     noPostMessage.textContent = 'There are no posts with ' + keyword + '!';
                 } else {
                     noPostMessage.textContent = 'There are no posts!';
@@ -89,7 +89,7 @@ function truncateString(str, maxLength) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('id');
+    const slug = urlParams.get('slug');
     const commentForm = document.querySelector(".comment-form");
     if (commentForm) {
         commentForm.addEventListener("submit", function (event) {
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         const errorMessages = commentForm.querySelectorAll(".error-message");
                         errorMessages.forEach(message => message.remove());
 
-                        fetchComments(postId);
+                        fetchComments(slug);
                     } else {
                         Object.keys(data.errors).forEach(fieldName => {
                             const field = document.querySelector(`#${fieldName}`);
