@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Apr 07, 2024 at 01:09 AM
+-- Generation Time: Apr 07, 2024 at 09:41 PM
 -- Server version: 11.2.3-MariaDB-1:11.2.3+maria~ubu2204
 -- PHP Version: 8.2.8
 
@@ -64,14 +64,14 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `name`, `email`, `post_id`, `comment_text`, `created_at`) VALUES
-(5, 'Anthony Gomes ', 'gomesanthonyshoshi@gmail.com', 16, 'really nice', '2024-03-09 04:06:32'),
-(9, 'Novotel', 'anthony@gmail.com', 16, 'Mooi', '2024-03-09 06:47:27'),
-(11, 'Test', 'gomesanthonyshoshi@gmail.com', 16, 'Test', '2024-03-09 06:57:26'),
-(19, 'Anthony', 'gomesanthonyshoshi@gmail.com', 15, 'New', '2024-03-18 05:07:15'),
-(20, 'Anthony', 'gomesanthonyshoshi@gmail.com', 15, 'Really Nice!', '2024-03-18 05:07:27'),
-(21, 'Anthony', 'gomesanthonyshoshi@gmail.com', 14, 'Nice!', '2024-03-18 08:51:17'),
-(22, 'Corendon', 'gomesanthonyshoshi@gmail.com', 14, 'New Comments@!', '2024-04-07 02:28:44'),
-(23, 'Anthony Shoshi Gomes', 'gomesanthonyshoshi@gmail.com', 14, 'Moi!!', '2024-04-07 02:30:09');
+(5, 'Anthony Gomes ', 'anthony@gmail.com', 16, 'really nice', '2024-03-09 04:06:32'),
+(9, 'John', 'john@gmail.com', 16, 'Mooi', '2024-03-09 06:47:27'),
+(11, 'Andrew', 'andrew@gmail.com', 16, 'Test', '2024-03-09 06:57:26'),
+(19, 'Gomes', 'gomes@gmail.com', 15, 'New', '2024-03-18 05:07:15'),
+(20, 'Wim', 'wim@gmail.com', 15, 'Really Nice!', '2024-03-18 05:07:27'),
+(21, 'Smith', 'smith@gmail.com', 14, 'Nice!', '2024-03-18 08:51:17'),
+(22, 'Dawood', 'dawood@gmail.com', 14, 'New Comments!', '2024-04-07 02:28:44'),
+(23, 'Teresa', 'teresa@gmail.com', 14, 'Moi!!', '2024-04-07 02:30:09');
 
 -- --------------------------------------------------------
 
@@ -198,7 +198,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -210,13 +210,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -56,6 +56,7 @@ class CategoryController
                 exit;
             }
 
+            $category->category_name = $validatedFields['category_name'];
             $category->slug = Helper::slug($_POST['category_name']);
 
             $success = $this->categoryService->createCategory($category);
