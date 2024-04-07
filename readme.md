@@ -6,7 +6,7 @@ This is a simple blogging platform with both backend and frontend components. Us
 
 To log in as an admin and access the backend, use the following credentials:
 
-- **URL:** BASE_URL/user/login
+- **URL:** http://localhost/user/login
 - **Username:** admin
 - **Password:** 123456
 
