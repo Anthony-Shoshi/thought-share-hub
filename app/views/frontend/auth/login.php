@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login - Thought Share Hub</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
     <!-- Bootstrap CSS -->
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Styles -->
@@ -13,7 +14,6 @@
 
 <body>
 
-    <!-- Login Container -->
     <div class="login-container">
 
         <?php if (isset($_SESSION['alert'])) : ?>
@@ -23,6 +23,9 @@
             <?php unset($_SESSION['alert']); ?>
         <?php endif; ?>
 
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <img src="/images/logo.png" alt="Logo" width="50" height="40" class="me-2">
+        </div>
         <h1 class="text-center">Login</h1>
         <h2 class="text-center">Thought Share Hub</h2>
         <hr>
@@ -41,7 +44,6 @@
 
     <!-- Bootstrap JS -->
     <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>
