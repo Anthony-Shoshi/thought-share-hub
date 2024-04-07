@@ -3,28 +3,30 @@
 
 <?php include __DIR__ . '/inc/sidebar.php'; ?>
 
-<!-- Main Content Area -->
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-4">
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-4 dashboard-main">
     <div class="row">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Posts</h5>
-                    <p class="card-text"><?=$totalPosts?></p>
+            <a href="/post" class="text-decoration-none">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Posts</h5>
+                        <p class="card-text"><?= $totalPosts ?></p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Categories</h5>
-                    <p class="card-text"><?=$totalCategories?></p>
+            <a href="/category" class="text-decoration-none">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Categories</h5>
+                        <p class="card-text"><?= $totalCategories ?></p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </main>
 
-<!-- Footer -->
 <?php include __DIR__ . '/inc/footer.php'; ?>

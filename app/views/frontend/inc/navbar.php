@@ -1,12 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="/">Thought Share Hub</a>
+        <a class="navbar-brand" href="/">
+
+            <img src="/images/logo.png" alt="Logo" width="50" height="40" class="d-inline-block align-text-top me-2">
+
+            Thought Share Hub
+        </a>
 
         <div class="mx-auto">
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle col-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Categories
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdownMenu">
@@ -14,7 +19,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/home/blogs">All Blogs</a>
+                        <a class="nav-link col-white" href="/home/blogs">All Blogs</a>
                     </li>
                 </ul>
             </div>
@@ -39,30 +44,4 @@
     </div>
 </nav>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        fetch('/api/category/getAllCategoryApi')
-            .then(response => response.json())
-            .then(categories => {
-                const dropdownMenu = document.getElementById('navbarDropdownMenu');
-
-                categories.forEach(category => {
-                    const dropdownItem = document.createElement('a');
-                    dropdownItem.className = 'dropdown-item';
-                    dropdownItem.href = '/home/category?cat=' + category.slug;
-                    dropdownItem.textContent = category.category_name;
-                    dropdownMenu.appendChild(dropdownItem);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching categories:', error);
-            });
-
-        const searchForm = document.getElementById('searchForm');
-        searchForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const searchKeyword = document.getElementById('searchKeyword').value;
-            window.location.href = `/home/blogs?keyword=${encodeURIComponent(searchKeyword)}`;
-        });
-    });
-</script>
+<script src="/assets/frontend/js/navbar.js"></script>

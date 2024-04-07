@@ -1,4 +1,8 @@
-<?php include __DIR__ . '/../inc/header.php'; ?>
+<?php
+
+use App\Helpers\Helper;
+
+ include __DIR__ . '/../inc/header.php'; ?>
 
 <?php include __DIR__ . '/../inc/sidebar.php'; ?>
 
@@ -17,8 +21,8 @@
                 <th scope="col">Author</th>
                 <th scope="col">Short Description</th>
                 <th scope="col">Featured</th>
-                <th scope="col">Total Like</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Like</th>
+                <th scope="col" style="width: 300px;">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +31,7 @@
                     <th scope="row"><?= $index + 1 ?></th>
                     <td><?= $post->title ?></td>
                     <td><?= $post->author ?></td>
-                    <td><?= $post->short_description ?></td>
+                    <td><?= Helper::truncateWords($post->short_description, 20) ?></td>
                     <td>
                         <?php if ($post->is_featured) : ?>
                             <span class="badge bg-success">Featured</span>

@@ -15,7 +15,7 @@ hr {
 .post-preview {
     margin-bottom: 40px;
     transition: transform 0.3s ease-in-out;
-    box-shadow: 2px 4px 10px #888888;
+    box-shadow: 2px 4px 10px #3db576;
     padding: 15px;
 }
 
@@ -42,16 +42,21 @@ h1 {
 }
 
 .category-link {
-    color: #0066cc;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.category-link:hover {
+    color: white;
 }
 
 .sidebar-card {
     border: none;
-    background-color: #f8f9fa;
+    background-color: #3db57640;
 }
 
 .sidebar-header {
-    background-color: #343a40;
+    background-color: #3db576;
     color: #fff;
     border-radius: 5px 5px 0 0;
 }
@@ -63,6 +68,15 @@ h1 {
 
 .sidebar-list-item {
     margin-bottom: 10px;
+    background: #f94747;
+    padding: 10px;
+    text-decoration: none;
+    border: 1px;
+    border-radius: 5px;
+}
+
+.sidebar-list-item:hover {    
+    background: #f02a2a;
 }
 
 .footer {
@@ -131,5 +145,14 @@ h1 {
 
 .fixed-size-image {
     width: 100%;
-    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    height: 180px;
+    object-fit: cover;
+}
+
+.bg-primary {
+    background-color: #3db576 !important;
+}
+
+.col-white {
+    color: white !important;
 }

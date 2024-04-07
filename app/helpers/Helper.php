@@ -50,4 +50,15 @@ class Helper
 
         return $fields;
     }
+
+    public static function truncateWords($text, $limit) {
+        $words = explode(' ', $text);
+    
+        if (count($words) > $limit) {
+            $words = array_slice($words, 0, $limit);
+            $text = implode(' ', $words) . '...';
+        }
+    
+        return $text;
+    }
 }

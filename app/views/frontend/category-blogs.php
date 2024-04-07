@@ -19,8 +19,4 @@
 
 <?php include __DIR__ . '/inc/footer.php'; ?>
 
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const slug = urlParams.get('cat');
-    fetchAndRenderCategoryPosts('/api/post/getAllPostsByCategory?cat=' + slug, 'categoryPostsContainer');
-</script>
+<script src="/assets/frontend/js/category-blogs.js"></script>

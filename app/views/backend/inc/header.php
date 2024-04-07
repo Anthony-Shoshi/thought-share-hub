@@ -16,6 +16,7 @@ if (isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Panel - Thought Share Hub</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
     <!-- Bootstrap CSS -->
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/backend/css/style.css" rel="stylesheet">
@@ -24,10 +25,15 @@ if (isset($_SESSION['user'])) {
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/home/backend">Admin Panel</a>
+            <a class="navbar-brand" href="/home/backend">
+
+                <img src="/images/logo.png" alt="Logo" width="50" height="40" class="d-inline-block align-text-top me-2">
+
+                Thought Share Hub - Panel
+
+            </a>
 
             <div class="ml-auto">
                 <ul class="navbar-nav">
@@ -47,6 +53,4 @@ if (isset($_SESSION['user'])) {
         </div>
     </nav>
 
-    <!-- Admin Panel Section -->
     <div class="container-fluid admin-panel">
-        <!-- Left Sidebar -->

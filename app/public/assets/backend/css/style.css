@@ -1,28 +1,35 @@
 body {
     padding-top: 60px;
-    /* Adjust the top padding according to your navbar height */
     margin: 0;
 }
 
 .admin-panel {
     display: flex;
-    height: 100vh;
+    margin: -4px;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
 
 .bg-sidebar {
-    background-color: #343a40;
-    /* Nice background color */
+    background-color: #3f73a7;
     color: #fff;
-    /* Text color */
     padding-top: 20px;
     padding-bottom: 20px;
     width: 230px;
-    min-height: 100%;
+    height: 170vh;
 }
 
 .sidebar-sticky {
     flex: 0 0 230px;
-    /* Fixed width for sidebar */
+    margin-top: -4px;    
 }
 
 .nav-link {
@@ -31,23 +38,28 @@ body {
 }
 
 .nav-link:hover {
-    background-color: #495057;
-}
-
-.nav-item {
-    margin-bottom: 10px;
+    background-color: #0e4a87;
+    color: white;
 }
 
 .nav-link.active {
-    background-color: #495057;
+    background-color: #0e4a87;
 }
 
 .card {
-    background-color: #495057;
+    background-color: #3f73a7;
     color: #fff;
     transition: transform 0.3s ease-in-out;
 }
 
 .card:hover {
     transform: scale(1.05);
+}
+
+.dashboard-main {
+    margin: -1px;
+}
+
+.bg-primary {
+    background-color: #0e4a87 !important;
 }

@@ -1,6 +1,6 @@
 </div>
 
-<footer class="bg-dark text-white text-center py-3">
+<footer class="bg-primary text-white text-center py-3">
         <p>Thought Share Hub &copy; 2024 | Developed by Anthony Shoshi Gomes</p>
     </footer>
 

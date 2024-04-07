@@ -86,7 +86,7 @@
                     <div class="row">
                         <?php foreach ($relatedPosts as $relatedPost) : ?>
                             <div class="col-md-4">
-                                <a href="/home/blog?id=<?= $relatedPost->post_id ?>" class="text-decoration-none">
+                                <a href="/home/blog?slug=<?= $relatedPost->slug ?>" class="text-decoration-none">
                                     <div class="related-post">
                                         <img src="<?= $relatedPost->image_url ?>" alt="Related Post Image" class="img-fluid mb-3">
                                         <h4><?= $relatedPost->title ?></h4>
@@ -111,10 +111,4 @@
 
 <?php include __DIR__ . '/inc/footer.php'; ?>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const slug = urlParams.get('slug');
-        fetchComments(slug);
-    });
-</script>
+<script src="/assets/frontend/js/post-details.js"></script>

@@ -26,9 +26,4 @@
 
 <?php include __DIR__ . '/../inc/footer.php'; ?>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        fetchAndRenderPosts('/api/post/getAllFeaturedPostsApi', 'featuredPostsContainer');
-        fetchAndRenderPosts('/api/post/getAllPostsLimitApi', 'moreBlogContainer');
-    });
-</script>
+<script src="/assets/frontend/js/home.js"></script>

@@ -79,7 +79,7 @@ class PostController
             $post->user_id = $_SESSION['user']['id'];
             $post->slug = Helper::slug($post->title);
 
-            $uploadDirectory = 'public/images';
+            $uploadDirectory = 'images';
 
             if (!file_exists($uploadDirectory)) {
                 mkdir($uploadDirectory, 0777, true);
@@ -137,9 +137,9 @@ class PostController
                 'content' => $_POST['content'],
             ];
 
-            
+
             $validatedFields = Helper::validateAndSanitizeFields($fields);
-            
+
             if ($validatedFields === false) {
                 header("Location: /post/edit?id=" . $_POST['post_id']);
                 exit;
@@ -155,7 +155,7 @@ class PostController
 
             $post->user_id = $_SESSION['user']['id'];
             $post->slug = Helper::slug($post->title);
-            
+
             $post->updated_at = date('Y-m-d H:i:s');
 
             if (isset($_FILES['image_url']) && $_FILES['image_url']['error'] === UPLOAD_ERR_OK) {
@@ -180,10 +180,15 @@ class PostController
 
     private function updatePostWithImage(Post $post): bool
     {
-        $targetDir = 'public/images';
+        $targetDir = 'images';
+        
+        if (!file_exists($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+        
         $filename = uniqid() . '_' . basename($_FILES["image_url"]["name"]);
         $targetFilePath = $targetDir . '/' . $filename;
-
+        
         if (move_uploaded_file($_FILES["image_url"]["tmp_name"], $targetFilePath)) {
             $post->image_url = '/' . $targetFilePath;
             return $this->postService->updatePost($post);

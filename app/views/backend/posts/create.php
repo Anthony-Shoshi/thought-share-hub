@@ -9,7 +9,7 @@
     <h2>Create Post</h2>
     <hr>
 
-    <form method="post" action="/post/store" enctype="multipart/form-data" autocomplete="off">
+    <form method="post" class="mb-3" action="/post/store" enctype="multipart/form-data" autocomplete="off">
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="title" class="form-label">Title</label>

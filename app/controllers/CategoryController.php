@@ -90,29 +90,31 @@ class CategoryController
 
     public function update(): void
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {            
+            
             $category = new Category();
 
             $fields = [
                 'category_name' => $_POST['category_name']
             ];
 
+            
             $validatedFields = Helper::validateAndSanitizeFields($fields);
-
+            
             if ($validatedFields === false) {
                 header('location: /category/edit?id=' . $_POST['category_id']);
                 exit;
             }
 
             $category->category_id = $_POST['category_id'];
-            $category->slug = Helper::slug($_POST['category_name']);
+            $category->category_name = $validatedFields['category_name'];
+            $category->slug = Helper::slug($validatedFields['category_name']);
 
             $success = $this->categoryService->updateCategory($category);
 
             if ($success) {
                 $_SESSION['success'] = true;
-                $_SESSION['message'] = 'Category updated successfully!';
+                $_SESSION['message'] = 'Category updated successfully!';                
                 header("Location: /category/index");
                 exit();
             } else {
@@ -120,6 +122,7 @@ class CategoryController
                 $_SESSION['message'] = 'Failed to update category.';
             }
         }
+
         header('location: /category/edit?id=' . $_POST['category_id']);
     }
 

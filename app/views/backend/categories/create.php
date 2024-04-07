@@ -9,13 +9,20 @@
     <h2>Create Category</h2>
     <hr>
 
-    <form method="post" action="/category/store" autocomplete="off">
-        <div class="mb-3">
-            <label for="category_name" class="form-label">Category Name</label>
-            <input type="text" class="form-control" id="category_name" name="category_name" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Create Category</button>
-    </form>
+    <div class="container">
+        <form method="post" action="/category/store" autocomplete="off">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="category_name" class="form-label">Category Name</label>
+                        <input type="text" class="form-control" id="category_name" name="category_name" required>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Category</button>
+        </form>
+    </div>
+
 
 </div>
 
