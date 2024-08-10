@@ -2,6 +2,10 @@
 
 This is a simple blogging platform with both backend and frontend components. Users can log in as an admin to manage categories and posts from the backend, while regular users can search, read, like, comment and share blog posts from the frontend.
 
+![image](https://github.com/user-attachments/assets/1ea45a65-b3a1-4406-a035-1de69b0d92c1)
+
+![image](https://github.com/user-attachments/assets/896907c0-f1d6-4897-a67b-27b756ab1f0c)
+
 ## Admin Login
 
 To log in as an admin and access the backend, use the following credentials:
